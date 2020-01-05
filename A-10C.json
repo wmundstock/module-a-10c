@@ -8718,7 +8718,7 @@
                                                      "IFF_MIC_IDENT": {
                                                                                      "category": "IFF",
                                                                                  "control_type": "selector",
-                                                                                  "description": "RAD Test/Mon",
+                                                                                  "description": "Ident/Mic",
                                                                                    "identifier": "IFF_MIC_IDENT",
                                                                                        "inputs": [ {
                                                                                                      "description": "switch to previous or next state",
