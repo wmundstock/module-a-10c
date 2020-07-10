@@ -103,18 +103,26 @@ local vhf_lut1 = {
 
 local function getVhfAmFreqency()
     local freq1 = vhf_lut1[string.format("%.2f",GetDevice(0):get_argument_value(143))]
+	if freq1 == nil then freq1 = "3" end
     local freq2 = string.format("%1.1f", GetDevice(0):get_argument_value(144)):sub(3)
+	if freq2 == nil then freq2 = "0" end
     local freq3 = string.format("%1.1f", GetDevice(0):get_argument_value(145)):sub(3)
+	if freq3 == nil then freq3 = "0" end
     local freq4 = string.format("%1.2f", GetDevice(0):get_argument_value(146)):sub(3)
+	if freq4 == nil then freq4 = "00" end
 
     return freq1 .. freq2 .. "." .. freq3 .. freq4
 end
 
 local function getVhfFmFreqency()
     local freq1 = vhf_lut1[string.format("%.2f",GetDevice(0):get_argument_value(157))]
+	if freq1 == nil then freq1 = "3" end
     local freq2 = string.format("%1.1f", GetDevice(0):get_argument_value(158)):sub(3)
+	if freq2 == nil then freq2 = "0" end
     local freq3 = string.format("%1.1f", GetDevice(0):get_argument_value(159)):sub(3)
+	if freq3 == nil then freq3 = "0" end
     local freq4 = string.format("%1.2f", GetDevice(0):get_argument_value(160)):sub(3)
+	if freq4 == nil then freq4 = "00" end
 
     return freq1 .. freq2 .. "." .. freq3 .. freq4
 end
@@ -162,7 +170,9 @@ local function getILSFrequency()
         ["0.9"] = "95"
     }
     local mhz = ils_mhz_lut[string.format("%.1f", GetDevice(0):get_argument_value(251))]
+	if mhz == nil then mhz = "108" end
     local khz = ils_khz_lut[string.format("%.01f", GetDevice(0):get_argument_value(252))]
+	if khz == nil then khz = "10" end
     return mhz .. "." .. khz
 end
 
@@ -466,7 +476,6 @@ defineRockerSwitch("RMFD_BRT", 3, 3027, 3029, 3028, 3029, 348, "Right MFCD", "BR
 defineRockerSwitch("RMFD_CON", 3, 3030, 3032, 3031, 3032, 349, "Right MFCD", "CON")
 defineRockerSwitch("RMFD_SYM", 3, 3033, 3035, 3034, 3035, 350, "Right MFCD", "SYM")
 defineTumb("RMFD_PWR", 3, 3036, 351, 0.1, {0.0, 0.2}, nil, false, "Right MFCD", "PWR OFF - NT - DAY")
-
 
 definePushButton("CMSP_ARW1", 4, 3001, 352, "CMSP", "SET Button 1")
 definePushButton("CMSP_ARW2", 4, 3002, 353, "CMSP", "SET Button 2")
@@ -1308,14 +1317,12 @@ defineIntegerFromGetter("EXT_FORMATION_LIGHTS", function()
 	return math.floor(LoGetAircraftDrawArgumentValue(200)*65535)
 end, 65535, "External Aircraft Model", "Formation Lights")
 
-
 defineIntegerFromGetter("EXT_POSITION_LIGHT_LEFT", function()
 	if LoGetAircraftDrawArgumentValue(190) > 0 then return 1 else return 0 end
 end, 1, "External Aircraft Model", "Left Position Light (red)")
 defineIntegerFromGetter("EXT_POSITION_LIGHT_RIGHT", function()
 	if LoGetAircraftDrawArgumentValue(191) > 0 then return 1 else return 0 end
 end, 1, "External Aircraft Model", "Right Position Light (green)")
-
 
 defineIntegerFromGetter("EXT_STROBE_TAIL", function()
 	if LoGetAircraftDrawArgumentValue(192) > 0 then return 1 else return 0 end
@@ -1353,5 +1360,15 @@ defineFloat("INT_FLT_INST_L_BRIGHT", 802, {0, 1}, "Light System Control Panel", 
 defineFloat("INT_AUX_INST_L_BRIGHT", 803, {0, 1}, "Light System Control Panel", "Auxiliary Instruments Light Brightness")
 defineFloat("INT_FLOOD_L_BRIGHT", 806, {0, 1}, "Light System Control Panel", "Flood Light Brightness")
 defineFloat("INT_CAUTION_L_BRIGHT", 905, {0, 1}, "Light System Control Panel", "Flood Light Brightness")
+
+defineIntegerFromGetter("EXT_WOW_NOSE", function()
+	if LoGetAircraftDrawArgumentValue(1) > 0 then return 1 else return 0 end
+end, 1, "External Aircraft Model", "Weight ON Wheels Nose Gear")
+defineIntegerFromGetter("EXT_WOW_RIGHT", function()
+	if LoGetAircraftDrawArgumentValue(4) > 0 then return 1 else return 0 end
+end, 1, "External Aircraft Model", "Weight ON Wheels Right Gear")
+defineIntegerFromGetter("EXT_WOW_LEFT", function()
+	if LoGetAircraftDrawArgumentValue(6) > 0 then return 1 else return 0 end
+end, 1, "External Aircraft Model", "Weight ON Wheels Left Gear")
 
 BIOS.protocol.endModule()
