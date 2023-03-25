@@ -1,4 +1,31 @@
 {
+                                   "HOTAS": {
+                                                 "HOTAS_PINKY_SWITCH": {
+                                                                                   "category": "HOTAS",
+                                                                               "control_type": "selector",
+                                                                                "description": "Pinky Siwtch Aft, Center, Forward",
+                                                                                 "identifier": "HOTAS_PINKY_SWITCH",
+                                                                                     "inputs": [ {
+                                                                                                   "description": "switch to previous or next state",
+                                                                                                     "interface": "fixed_step"
+                                                                                               }, {
+                                                                                                   "description": "set position",
+                                                                                                     "interface": "set_state",
+                                                                                                     "max_value": 2
+                                                                                               } ],
+                                                                        "momentary_positions": "none",
+                                                                                    "outputs": [ {
+                                                                                                       "address": 4158,
+                                                                                                   "description": "selector position",
+                                                                                                          "mask": 12,
+                                                                                                     "max_value": 2,
+                                                                                                      "shift_by": 2,
+                                                                                                        "suffix": "",
+                                                                                                          "type": "integer"
+                                                                                               } ],
+                                                                           "physical_variant": "limited_rotary"
+                                                                    }
+                                           },
                                     "AAP": {
                                                 "AAP_CDUPWR": {
                                                                              "category": "AAP",
