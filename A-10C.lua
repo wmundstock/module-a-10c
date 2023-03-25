@@ -452,6 +452,15 @@ defineRockerSwitch("LMFD_CON", 2, 3030, 3032, 3031, 3032, 323, "Left MFCD", "CON
 defineRockerSwitch("LMFD_SYM", 2, 3033, 3035, 3034, 3035, 324, "Left MFCD", "SYM")
 defineTumb("LMFD_PWR", 2, 3036, 325, 0.1, {0.0, 0.2}, nil, false, "Left MFCD", "PWR OFF - NT - DAY")
 
+
+---------------------------------------------------------------------------------------
+-- File: A-10C.lua
+-- Walter HOTAS
+-- function BIOS.util.defineTumb(msg, device_id, command, arg_number, step, limits, output_map, cycle, category, description)
+defineTumb("HOTAS_PINKY_SWITCH", 17, 3001, 158, 0.1, {0.0, 0.2}, nil, false, "HOTAS", "Pinky Siwtch Aft, Center, Forward")
+-- end Walter
+---------------------------------------------------------------------------------------
+
 definePushButton("RMFD_01", 3, 3001, 326, "Right MFCD", "OSB 1")
 definePushButton("RMFD_02", 3, 3002, 327, "Right MFCD", "OSB 2")
 definePushButton("RMFD_03", 3, 3003, 328, "Right MFCD", "OSB 3")
